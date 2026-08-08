@@ -1,0 +1,179 @@
+.hero {
+  position: relative;
+  padding: 130px 0 70px;
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-logo {
+  position: absolute;
+  top: 28px;
+  /* lines up with the container's left edge, same as the old header logo did */
+  left: max(24px, calc((100% - 1180px) / 2));
+  z-index: 2;
+}
+
+/* The shared .silk-bg overlay is tuned for panels of solid text, which
+   crushed the hero photo far darker than the reference design (where only
+   the left side - behind the logo/text - is dark, and the photo itself
+   stays vivid on the right). Override with a gradient that fades out left
+   to right instead of the heavier all-over wash. */
+.hero.silk-bg {
+  /* Uses the actual design photo (hero-bg.jpg) instead of the generic
+     silk-bg.jpg texture shared by Checkout/admin pages - this is the only
+     place that photo should show up, so it's a separate asset. */
+  background-image: linear-gradient(
+      100deg,
+      rgba(8, 1, 1, 0.88) 0%,
+      rgba(8, 1, 1, 0.6) 24%,
+      rgba(8, 1, 1, 0.25) 46%,
+      rgba(8, 1, 1, 0) 62%
+    ),
+    url('../assets/hero-bg.jpg');
+  background-position: center 38%;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 110px;
+  }
+}
+
+.hero-text h1 {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  letter-spacing: 0.05em;
+  margin: 0;
+  color: var(--text-light);
+}
+
+.hero-script {
+  font-family: var(--font-script);
+  /* Great Vibes is a script face - already slanted/flourished by design,
+     so forcing italic on it (no italic cut exists) just faux-skews it. */
+  font-style: normal;
+  font-size: 3.6rem;
+  line-height: 1.2;
+  margin: 2px 0 16px;
+  /* A real metallic-gold look instead of the flat, pale --gold-light tone -
+     a shimmering gradient clipped to the text. Falls back to solid gold
+     (via `color`) in the rare browser that ignores background-clip: text. */
+  color: var(--gold);
+  background: linear-gradient(120deg, #f4dfab 0%, #cba15b 35%, #8a6a2f 55%, #cba15b 75%, #f4dfab 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-sub {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 420px;
+}
+
+.hero-divider {
+  width: 90px;
+  height: 2px;
+  background: var(--gold);
+  margin: 18px 0 26px;
+}
+
+.section-block {
+  padding: 56px 0;
+}
+
+.collections-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  justify-content: center;
+}
+
+.collection-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 140px;
+}
+
+.collection-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  /* Fallback visual enquanto a coleção não tem foto de capa cadastrada no
+     admin - some assim que um background-image é aplicado inline, porque
+     a imagem cobre o gradiente por cima. */
+  background: linear-gradient(135deg, #7a1010, #2a0505);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--panel-border);
+}
+
+.collection-label {
+  font-family: var(--font-display);
+  color: var(--text-light);
+  text-transform: lowercase;
+  font-size: 0.9rem;
+}
+
+/* "Destaques" reads as its own distinct heading in the reference design -
+   left-aligned, bigger and bolder, with no flanking gold lines - and with
+   real breathing room above it, instead of sitting right under "Nossas
+   coleções" using the exact same centered style. */
+.destaques-section {
+  padding-top: 100px;
+}
+
+.destaques-title {
+  font-family: var(--font-display);
+  color: var(--gold-light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 28px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Gold line trailing the text, same idea as .section-title.align-left
+   elsewhere on the site (e.g. "Seu pedido" in checkout), just sized to this
+   heading's bigger font. */
+.destaques-title::after {
+  content: '';
+  flex: 1;
+  max-width: 160px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+}
+
+@media (max-width: 640px) {
+  .destaques-section {
+    padding-top: 64px;
+  }
+  .destaques-title {
+    font-size: 1.5rem;
+  }
+  .destaques-title::after {
+    max-width: 90px;
+  }
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 22px;
+}
+
+@media (max-width: 640px) {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  .hero-script {
+    font-size: 2.6rem;
+  }
+}

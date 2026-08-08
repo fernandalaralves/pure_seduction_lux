@@ -1,0 +1,76 @@
+.order-status-badge {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(203, 161, 91, 0.15);
+  border: 1px solid var(--panel-border);
+  color: var(--gold-light);
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+}
+
+.order-status-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(203, 161, 91, 0.12);
+}
+
+.order-progress {
+  display: flex;
+  align-items: flex-start;
+  margin: 6px 0 22px;
+}
+
+.order-progress-step {
+  flex: 1;
+  position: relative;
+  text-align: center;
+}
+
+.order-progress-step::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: -50%;
+  width: 100%;
+  height: 2px;
+  background: rgba(203, 161, 91, 0.25);
+  z-index: 0;
+}
+
+.order-progress-step:first-child::before {
+  content: none;
+}
+
+.order-progress-step.done::before {
+  background: var(--gold);
+}
+
+.order-progress-dot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(203, 161, 91, 0.25);
+  border: 2px solid var(--panel-border);
+  margin: 0 auto 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.order-progress-step.done .order-progress-dot {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.order-progress-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+.order-progress-step.done .order-progress-label {
+  color: var(--gold-light);
+}

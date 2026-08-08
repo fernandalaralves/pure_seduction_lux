@@ -1,0 +1,129 @@
+.storefront-header {
+  background: #0a0704;
+  border-bottom: 1px solid rgba(203, 161, 91, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.storefront-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+}
+
+.storefront-nav {
+  display: flex;
+  gap: 36px;
+}
+
+.storefront-nav a {
+  font-family: var(--font-display);
+  text-transform: lowercase;
+  letter-spacing: 0.08em;
+  font-size: 0.92rem;
+  color: var(--text-light);
+  opacity: 0.85;
+}
+
+.storefront-nav a:hover,
+.storefront-nav a.active {
+  opacity: 1;
+  color: var(--gold-light);
+}
+
+/* "destaques" only scrolls the current page, so - unlike the real routes -
+   it never highlights on hover or while "active". */
+.storefront-nav a.nav-static:hover,
+.storefront-nav a.nav-static.active {
+  opacity: 0.85;
+  color: var(--text-light);
+}
+
+/* Extra breathing room between "coleções" and "destaques" - they read too
+   close together with just the standard nav gap. */
+.storefront-nav a.nav-static {
+  margin-left: 14px;
+}
+
+.storefront-cart-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  color: var(--gold-light);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: var(--gold);
+  color: #241505;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 1px 6px;
+}
+
+.storefront-menu-btn {
+  display: none;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--panel-border);
+  background: transparent;
+  color: var(--gold-light);
+  cursor: pointer;
+}
+
+.storefront-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  display: flex;
+}
+
+.storefront-mobile-menu {
+  width: 240px;
+  max-width: 80vw;
+  background: var(--black-soft);
+  border-right: 1px solid var(--panel-border);
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.storefront-mobile-menu a {
+  font-family: var(--font-display);
+  text-transform: lowercase;
+  letter-spacing: 0.08em;
+  font-size: 1rem;
+  color: var(--text-light);
+  opacity: 0.9;
+}
+
+.storefront-mobile-menu a:hover,
+.storefront-mobile-menu a.active {
+  color: var(--gold-light);
+  opacity: 1;
+}
+
+.storefront-mobile-menu a.nav-static:hover,
+.storefront-mobile-menu a.nav-static.active {
+  color: var(--text-light);
+  opacity: 0.9;
+}
+
+@media (max-width: 720px) {
+  .storefront-nav {
+    display: none;
+  }
+  .storefront-menu-btn {
+    display: inline-flex;
+  }
+}

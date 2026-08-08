@@ -1,0 +1,41 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 40px;
+  align-items: start;
+}
+
+.about-text {
+  max-width: 640px;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+/* Placeholder for the owner's photo - roughly the size of a square
+   Instagram post. The admin swaps this out with a real photo later. */
+.about-photo-frame {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 1 / 1;
+  border: 1px dashed var(--panel-border);
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  justify-self: end;
+}
+
+@media (max-width: 720px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-photo-frame {
+    justify-self: center;
+    margin: 8px auto 0;
+  }
+}

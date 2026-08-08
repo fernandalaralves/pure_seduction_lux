@@ -1,0 +1,352 @@
+:root {
+  --gold: #cba15b;
+  --gold-light: #e6c98a;
+  --gold-dark: #8a6a2f;
+  --wine: #4a0000;
+  --wine-dark: #1a0000;
+  --black: #0a0704;
+  --black-soft: #120b0a;
+  --panel: rgba(20, 10, 10, 0.72);
+  --panel-border: rgba(203, 161, 91, 0.45);
+  --text-light: #f3ede2;
+  --text-muted: #c9b9a6;
+  --success: #2e7d4f;
+  --danger: #9c2b2b;
+
+  --font-display: 'Cinzel', 'Playfair Display', serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-body: 'Poppins', sans-serif;
+
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Keeps the footer pinned to the bottom of the viewport on short pages
+   (like Sobre nós) instead of floating right under a small amount of
+   content, while still scrolling normally on taller pages. */
+.storefront {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.storefront > main {
+  flex: 1 0 auto;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+.silk-bg {
+  /* Dark gradient layered over the real silk/lace photo so overlaid text
+     stays readable, with the photo itself as the base texture. */
+  background-image: linear-gradient(160deg, rgba(20, 2, 2, 0.55) 0%, rgba(10, 1, 1, 0.75) 55%, rgba(6, 1, 1, 0.92) 100%),
+    url('../assets/silk-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-display);
+  letter-spacing: 0.12em;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold) 55%, var(--gold-dark));
+  color: #241505;
+  box-shadow: 0 4px 18px rgba(203, 161, 91, 0.25);
+}
+
+.btn-gold:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(203, 161, 91, 0.4);
+}
+
+.btn-outline-gold {
+  background: transparent;
+  color: var(--gold-light);
+  border: 1px solid var(--panel-border);
+}
+
+.btn-outline-gold:not(:disabled):hover {
+  background: rgba(203, 161, 91, 0.1);
+}
+
+.btn-danger-outline {
+  background: transparent;
+  border: 1px solid var(--danger);
+  color: #e18b8b;
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.72rem;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: transparent;
+  color: var(--gold-light);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon-btn.danger {
+  border-color: var(--danger);
+  color: #e18b8b;
+}
+
+.icon-btn:hover {
+  background: rgba(203, 161, 91, 0.12);
+}
+
+/* ---------- Section titles with flanking gold lines ---------- */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--font-display);
+  color: var(--gold-light);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 1.3rem;
+  margin: 0 0 28px;
+}
+
+.section-title::before,
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+}
+
+.section-title.align-left::before {
+  display: none;
+}
+.section-title.align-left {
+  justify-content: flex-start;
+}
+.section-title.align-left::after {
+  max-width: 140px;
+}
+
+/* ---------- Cards / panels ---------- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 28px;
+  backdrop-filter: blur(6px);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.badge-active {
+  background: rgba(46, 125, 79, 0.18);
+  color: #6fdb9c;
+  border: 1px solid rgba(46, 125, 79, 0.5);
+}
+
+.badge-inactive {
+  background: rgba(156, 43, 43, 0.18);
+  color: #ed9b9b;
+  border: 1px solid rgba(156, 43, 43, 0.5);
+}
+
+/* ---------- Forms ---------- */
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 560px) {
+  .field-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.error-text {
+  color: #ed9b9b;
+  font-size: 0.85rem;
+  margin-top: 6px;
+}
+
+.helper-text {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.alert {
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.alert-error {
+  background: rgba(156, 43, 43, 0.15);
+  border: 1px solid rgba(156, 43, 43, 0.5);
+  color: #ffb4b4;
+}
+
+.alert-success {
+  background: rgba(46, 125, 79, 0.15);
+  border: 1px solid rgba(46, 125, 79, 0.5);
+  color: #9fe6bc;
+}
+
+/* ---------- Selectable option cards (payment / fulfillment) ---------- */
+.option-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--panel-border);
+  background: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.option-card.selected {
+  border-color: var(--gold);
+  background: rgba(203, 161, 91, 0.12);
+}
+
+.option-card input[type='radio'] {
+  accent-color: var(--gold);
+  width: 18px;
+  height: 18px;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--panel-border);
+  border-radius: 4px;
+}
+
+.text-center {
+  text-align: center;
+}
+.mt-0 {
+  margin-top: 0;
+}
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: var(--gold-light);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

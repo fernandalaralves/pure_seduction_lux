@@ -1,0 +1,28 @@
+.page-title {
+  font-family: var(--font-display);
+  color: var(--gold-light);
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+}
+
+.shop-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.shop-toolbar input,
+.shop-toolbar select {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--text-light);
+  font-family: var(--font-body);
+}
+
+.shop-toolbar input {
+  flex: 1;
+  min-width: 220px;
+}

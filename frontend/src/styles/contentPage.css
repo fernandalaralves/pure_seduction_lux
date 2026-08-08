@@ -1,0 +1,32 @@
+/* Shared prose styling for admin-editable text pages: Política de
+   Privacidade, Trocas e devoluções, Perguntas frequentes. */
+.content-page h2 {
+  font-family: var(--font-display);
+  color: var(--gold-light);
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  margin: 28px 0 10px;
+}
+
+.content-page h2:first-child {
+  margin-top: 0;
+}
+
+.content-page p,
+.content-page li {
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.content-page ul {
+  padding-left: 20px;
+  margin: 8px 0 16px;
+}
+
+.content-page li {
+  margin-bottom: 6px;
+}
+
+.content-page strong {
+  color: var(--text-light);
+}

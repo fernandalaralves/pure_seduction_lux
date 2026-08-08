@@ -1,0 +1,18 @@
+.psl-logo {
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 3px var(--gold);
+  flex-shrink: 0;
+  background: #1a0505;
+}
+
+.psl-logo img {
+  width: 112%;
+  height: 112%;
+  object-fit: cover;
+  /* the source photo has a thin light margin around the circle - scaling the
+     image up slightly crops that margin out so only the circle shows */
+}

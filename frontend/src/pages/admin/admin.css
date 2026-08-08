@@ -1,0 +1,354 @@
+.admin-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 90px;
+}
+
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 8px;
+}
+
+.admin-icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--gold-light);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* Keeps the brand block centered now that "Sair" only lives in the drawer. */
+.admin-icon-btn-spacer {
+  width: 42px;
+  height: 42px;
+}
+
+.admin-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+
+.admin-brand h1 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-light);
+  margin: 6px 0 0;
+}
+
+.admin-brand p {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.admin-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  display: flex;
+}
+
+.admin-drawer {
+  width: 240px;
+  background: var(--black-soft);
+  border-right: 1px solid var(--panel-border);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-drawer a,
+.admin-drawer button {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.admin-drawer button {
+  color: #ed9b9b;
+  margin-top: auto;
+}
+
+.admin-content {
+  flex: 1;
+  padding: 20px 0 40px;
+}
+
+.admin-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background: var(--black-soft);
+  border-top: 1px solid var(--panel-border);
+  z-index: 40;
+}
+
+.admin-bottom-nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 0;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-bottom-nav-item span {
+  font-size: 1.2rem;
+}
+
+.admin-bottom-nav-item.active {
+  color: var(--gold-light);
+}
+
+/* ---------- Admin login ---------- */
+.admin-login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.admin-login-form {
+  width: 100%;
+  max-width: 380px;
+}
+
+.admin-login-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 28px;
+  gap: 4px;
+}
+
+.admin-login-brand h1 {
+  font-family: var(--font-display);
+  color: var(--gold-light);
+  letter-spacing: 0.1em;
+  font-size: 1.2rem;
+  margin: 10px 0 0;
+}
+
+.admin-login-brand p {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ---------- Products list (matches Figma admin mockup) ---------- */
+.admin-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.admin-page-header h1 {
+  font-family: var(--font-display);
+  color: var(--text-light);
+  margin: 0 0 4px;
+  font-size: 1.5rem;
+}
+
+.admin-page-header p {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.admin-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.admin-toolbar input,
+.admin-toolbar select {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--text-light);
+}
+
+.admin-toolbar .admin-search {
+  flex: 1;
+  min-width: 220px;
+}
+
+.admin-product-row {
+  display: grid;
+  grid-template-columns: 72px 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  margin-bottom: 14px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.admin-product-thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #1a1210;
+}
+
+.admin-product-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-product-name {
+  font-family: var(--font-display);
+  color: var(--text-light);
+  font-size: 1.05rem;
+}
+
+.admin-product-meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.admin-product-price {
+  color: var(--gold-light);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.admin-product-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-product-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+@media (max-width: 720px) {
+  .admin-product-row {
+    grid-template-columns: 60px 1fr;
+    grid-template-areas:
+      'thumb name'
+      'actions actions'
+      'status status';
+  }
+  .admin-product-actions {
+    grid-area: actions;
+    justify-content: flex-start;
+  }
+  .admin-product-status {
+    grid-area: status;
+    align-items: flex-start;
+  }
+}
+
+/* ---------- Orders list ---------- */
+.admin-order-row {
+  padding: 16px;
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  margin-bottom: 14px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.admin-order-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.admin-order-number {
+  font-family: var(--font-display);
+  color: var(--text-light);
+}
+
+/* ---------- Product form ---------- */
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 20px;
+}
+
+@media (max-width: 720px) {
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-image-preview-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.admin-image-preview {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--panel-border);
+}
+
+.admin-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-image-preview button {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 0.65rem;
+  cursor: pointer;
+}

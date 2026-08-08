@@ -1,0 +1,63 @@
+.pix-panel {
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pix-qr-wrap {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  margin: 0 auto 18px;
+  width: fit-content;
+}
+
+.pix-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.pix-timer-value {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+}
+
+.pix-timer-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.pix-key-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.pix-key-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.pix-key-value {
+  font-family: var(--font-display);
+  color: var(--text-light);
+  word-break: break-all;
+}
+
+.pix-expired {
+  text-align: left;
+}

@@ -1,0 +1,9 @@
+.auth-page {
+  display: flex;
+  justify-content: center;
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 420px;
+}

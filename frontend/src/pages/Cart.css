@@ -1,0 +1,75 @@
+.cart-line {
+  display: grid;
+  grid-template-columns: 70px 1fr auto auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(203, 161, 91, 0.15);
+}
+
+.cart-line:last-of-type {
+  border-bottom: none;
+}
+
+.cart-line-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1a1210;
+}
+
+.cart-line-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-line-name {
+  font-family: var(--font-display);
+  color: var(--text-light);
+}
+
+.cart-line-price {
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 18px;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 640px) {
+  .cart-line {
+    grid-template-columns: 60px 1fr;
+    grid-template-areas:
+      'image info'
+      'image price'
+      'stepper stepper'
+      'remove remove';
+  }
+  .cart-line-image {
+    grid-area: image;
+    width: 60px;
+    height: 60px;
+  }
+  .cart-line-info {
+    grid-area: info;
+  }
+  .cart-line-price {
+    grid-area: price;
+  }
+  .cart-line .quantity-stepper {
+    grid-area: stepper;
+    justify-self: start;
+    margin-top: 6px;
+  }
+  .cart-line .icon-btn.danger {
+    grid-area: remove;
+    justify-self: start;
+    margin-top: 6px;
+  }
+}

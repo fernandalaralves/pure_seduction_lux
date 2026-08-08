@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+backend/uploads/products/*
+!backend/uploads/products/.gitkeep
+backend/data/*.sqlite
+backend/data/*.sqlite-journal
+*.log
+.DS_Store
+Thumbs.db

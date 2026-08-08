@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: psl_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-pure_seduction_lux}
+      POSTGRES_USER: ${DB_USER:-psl_user}
+      # No weak fallback here on purpose: if DB_PASSWORD isn't set, Compose
+      # refuses to start instead of silently using a known/guessable
+      # password. Put DB_PASSWORD in a ".env" file next to this
+      # docker-compose.yml (Compose auto-loads that one - it's a different
+      # file from backend/.env, which only the Node app reads) or export it
+      # in your shell before running "docker-compose up".
+      POSTGRES_PASSWORD: "${DB_PASSWORD:?defina DB_PASSWORD antes de subir o container - veja o .env na raiz do projeto}"
+    ports:
+      # Bound to 127.0.0.1 only - reachable from this machine (e.g. a local
+      # psql/GUI client) but never from the public internet. If you deploy
+      # this compose file on a server, keep it this way (or drop the ports
+      # section entirely and let only the backend container reach the db
+      # over the internal Docker network).
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - psl_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-psl_user}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  psl_postgres_data:

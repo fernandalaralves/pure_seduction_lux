@@ -65,7 +65,7 @@ export default function StorefrontFooter() {
             rel="noreferrer"
             className="storefront-footer-social"
           >
-            📷 @_pureseductionlux
+             @_pureseductionlux
           </a>
         </div>
       </div>

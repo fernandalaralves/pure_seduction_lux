@@ -87,13 +87,9 @@ export default function AdminProductForm() {
     setSubmitting(true);
     try {
       if (isEditing) {
-        await adminApi.put(`/products/${id}`, formData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        await adminApi.put(`/products/${id}`, formData); 
       } else {
-        await adminApi.post('/products', formData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        await adminApi.post('/products', formData);
       }
       navigate('/admin/produtos');
     } catch (err) {

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
+import { getImageUrl } from '../api/client';
 
 function formatPrice(value) {
   return parseFloat(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -13,8 +14,7 @@ export default function ProductCard({ product }) {
     <div className="product-card">
       <Link to={`/produto/${product.slug}`} className="product-card-image-wrap">
         {image ? (
-          <img src={image} alt={product.name} />
-        ) : (
+        <img src={getImageUrl(image)} alt={product.name} />        ) : (
           <div className="product-card-placeholder">Sem imagem</div>
         )}
         <button className="product-card-wishlist" aria-label="Favoritar" onClick={(e) => e.preventDefault()}>

@@ -35,3 +35,9 @@ adminApi.interceptors.response.use(
 export function extractErrorMessage(error, fallback = 'Ocorreu um erro. Tente novamente.') {
   return error?.response?.data?.error || error?.message || fallback;
 }
+
+export function getImageUrl(path) {
+  if (!path) return '';
+  if (path.startsWith('http')) return path;
+  return `${baseURL}${path}`;
+}

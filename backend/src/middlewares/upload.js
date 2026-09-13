@@ -3,8 +3,7 @@ const path = require('path');
 const crypto = require('crypto');
 const fs = require('fs');
 
-const ALLOWED_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
-
+const ALLOWED_TYPES = new Set(['image/jpeg', 'image/jpg', 'image/png', 'image/webp']);
 const MAX_FILE_SIZE_MB = 20;
 
 function detectImageType(buffer) {

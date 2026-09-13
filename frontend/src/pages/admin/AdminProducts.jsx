@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { adminApi, extractErrorMessage } from '../../api/client';
 import './admin.css';
+import { getImageUrl } from '../../api/client';
 
 function formatPrice(value) {
   return parseFloat(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -106,7 +107,7 @@ export default function AdminProducts() {
             return (
               <div key={product.id} className="admin-product-row">
                 <div className="admin-product-thumb">
-                  {image ? <img src={image} alt={product.name} /> : null}
+                 {image ? <img src={getImageUrl(image)} alt={product.name} /> : null}
                 </div>
                 <div>
                   <div className="admin-product-name">{product.name}</div>

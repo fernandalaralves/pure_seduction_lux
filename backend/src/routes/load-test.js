@@ -8,7 +8,6 @@ export const options = {
 };
 
 export default function () {
-  // IMPORTANTE: Apontem para a rota real da aplicação
   const res = http.get('http://localhost:4000/api');
 
   // Validações automatizadas (Checks)

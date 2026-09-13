@@ -4,6 +4,7 @@ import { api, extractErrorMessage } from '../api/client';
 import ProductCard from '../components/ProductCard';
 import Logo from '../components/Logo';
 import './Home.css';
+import { getImageUrl } from '../api/client';
 
 // Sempre aparece por último, apontando pra loja sem filtro nenhum - não é
 // uma categoria de verdade, então não vem da API.
@@ -50,8 +51,7 @@ export default function Home() {
               <div key={c.slug || 'todos'} className="collection-item">
                 <div
                   className="collection-circle"
-                  style={c.image_url ? { backgroundImage: `url(${c.image_url})` } : undefined}
-                />
+                  style={c.image_url ? { backgroundImage: `url(${getImageUrl(c.image_url)})` } : undefined}                />
                 <div className="collection-label">{c.label || c.name}</div>
                 <Link to={c.slug ? `/loja?categoria=${c.slug}` : '/loja'} className="btn btn-outline-gold btn-sm">
                   Ver coleção

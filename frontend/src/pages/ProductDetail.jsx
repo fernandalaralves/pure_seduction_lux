@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { api, extractErrorMessage } from '../api/client';
 import { useCart } from '../context/CartContext';
 import './ProductDetail.css';
+import { getImageUrl } from '../api/client';
 
 function formatPrice(value) {
   return parseFloat(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -59,7 +60,7 @@ export default function ProductDetail() {
       <div className="product-detail-gallery">
         <div className="product-detail-main-image">
           {images[activeImage] ? (
-            <img src={images[activeImage].url} alt={product.name} />
+          <img src={getImageUrl(image)} alt={product.name} />
           ) : (
             <div className="product-card-placeholder">Sem imagem</div>
           )}

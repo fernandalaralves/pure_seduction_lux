@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import './Cart.css';
+import { getImageUrl } from '../api/client';
 
 function formatPrice(value) {
   return parseFloat(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -29,7 +30,7 @@ export default function Cart() {
         {items.map((item) => (
           <div key={`${item.productId}-${item.selectedSize}`} className="cart-line">
             <div className="cart-line-image">
-              {item.image ? <img src={item.image} alt={item.name} /> : <div className="product-card-placeholder">—</div>}
+              {item.image ? <img src={getImageUrl(item.image)} alt={item.name} /> : <div className="product-card-placeholder">Sem imagem</div>}
             </div>
             <div className="cart-line-info">
               <div className="cart-line-name">{item.name}</div>

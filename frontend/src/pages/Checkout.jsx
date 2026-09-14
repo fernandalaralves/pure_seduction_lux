@@ -4,6 +4,7 @@ import { useCart } from '../context/CartContext';
 import { api, extractErrorMessage } from '../api/client';
 import PixPaymentPanel from '../components/PixPaymentPanel';
 import './Checkout.css';
+import { getImageUrl } from '../api/client';
 
 function formatPrice(value) {
   return parseFloat(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -153,7 +154,7 @@ export default function Checkout() {
           {items.map((item) => (
             <div key={`${item.productId}-${item.selectedSize}`} className="checkout-item">
               <div className="cart-line-image">
-                {item.image ? <img src={item.image} alt={item.name} /> : <div className="product-card-placeholder">—</div>}
+                {item.image ? <img src={getImageUrl(item.image)} alt={item.name} /> : <div className="product-card-placeholder">—</div>}
               </div>
               <div className="cart-line-info">
                 <div className="cart-line-name">{item.name}</div>

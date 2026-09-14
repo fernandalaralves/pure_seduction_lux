@@ -60,7 +60,7 @@ export default function ProductDetail() {
       <div className="product-detail-gallery">
         <div className="product-detail-main-image">
           {images[activeImage] ? (
-          <img src={getImageUrl(image)} alt={product.name} />
+          <img src={getImageUrl(images[activeImage].url)} alt={product.name} />
           ) : (
             <div className="product-card-placeholder">Sem imagem</div>
           )}
@@ -73,7 +73,7 @@ export default function ProductDetail() {
                 className={i === activeImage ? 'active' : ''}
                 onClick={() => setActiveImage(i)}
               >
-                <img src={img.url} alt="" />
+                <img src={getImageUrl(img.url)} alt="" />
               </button>
             ))}
           </div>

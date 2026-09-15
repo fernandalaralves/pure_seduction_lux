@@ -47,6 +47,7 @@ router.get('/orders', adminOrderController.list);
 router.get('/orders/:id', adminOrderController.getById);
 router.patch('/orders/:id/status', adminOrderController.updateStatus);
 router.patch('/orders/:id/payment-status', adminOrderController.updatePaymentStatus);
+router.delete('/orders/:id', adminOrderController.remove);
 
 // Store settings (incl. the delivery municipality)
 router.get('/settings', settingsController.getAdmin);

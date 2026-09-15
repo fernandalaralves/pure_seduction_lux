@@ -24,6 +24,7 @@ export default function AdminOrders() {
   const [fulfillmentType, setFulfillmentType] = useState('todos');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState(null);
 
   const load = () => {
     setLoading(true);
@@ -42,6 +43,23 @@ export default function AdminOrders() {
       load();
     } catch (err) {
       setError(extractErrorMessage(err));
+    }
+  };
+
+  const handleDelete = async (order) => {
+    const confirm = window.confirm(
+      `Tem certeza que deseja EXCLUIR o pedido ${order.order_number}?\n\nEssa ação não pode ser desfeita.`
+    );
+    if (!confirm) return;
+
+    setDeletingId(order.id);
+    try {
+      await adminApi.delete(`/orders/${order.id}`);
+      setOrders((prev) => prev.filter((o) => o.id !== order.id));
+    } catch (err) {
+      setError(extractErrorMessage(err));
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -109,9 +127,20 @@ export default function AdminOrders() {
                     </option>
                   ))}
                 </select>
-                <Link to={`/admin/pedidos/${order.id}`} className="btn btn-outline-gold btn-sm">
-                  Detalhes
-                </Link>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <Link to={`/admin/pedidos/${order.id}`} className="btn btn-outline-gold btn-sm">
+                    Detalhes
+                  </Link>
+                  <button
+                    className="btn btn-outline-gold btn-sm"
+                    onClick={() => handleDelete(order)}
+                    disabled={deletingId === order.id}
+                    style={{ color: '#e74c3c', borderColor: '#e74c3c' }}
+                    title="Excluir pedido"
+                  >
+                    {deletingId === order.id ? '...' : 'Excluir'}
+                  </button>
+                </div>
               </div>
             </div>
           ))}

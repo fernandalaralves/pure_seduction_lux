@@ -62,4 +62,22 @@ const updatePaymentStatus = asyncHandler(async (req, res) => {
   res.json({ order });
 });
 
-module.exports = { list, getById, updateStatus, updatePaymentStatus };
+// DELETE /api/admin/orders/:id
+const remove = asyncHandler(async (req, res) => {
+  const order = await Order.findByPk(req.params.id);
+  if (!order) return res.status(404).json({ error: 'Pedido não encontrado.' });
+
+  // Apaga os itens do pedido primeiro (garante que não vai dar erro de foreign key)
+  await OrderItem.destroy({ where: { order_id: order.id } });
+
+  // Se houver endereço de entrega vinculado, apaga também
+  if (order.delivery_address_id) {
+    await Address.destroy({ where: { id: order.delivery_address_id } });
+  }
+
+  // Apaga o pedido
+  await order.destroy();
+  res.json({ message: 'Pedido removido com sucesso.' });
+});
+
+module.exports = { list, getById, updateStatus, updatePaymentStatus, remove };

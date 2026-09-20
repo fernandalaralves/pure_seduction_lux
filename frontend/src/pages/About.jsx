@@ -1,4 +1,5 @@
 import './About.css';
+import fotoFundadora from '../assets/fundadora.jpeg';
 
 export default function About() {
   return (
@@ -11,7 +12,7 @@ export default function About() {
           cuidado nos detalhes — para que você se sinta bem todos os dias.
         </p>
         <div className="about-photo-frame">
-          <span>Foto da fundadora em breve</span>
+           <img src={fotoFundadora} alt="Fundadora da Pure Seduction Lux" />
         </div>
       </div>
     </div>

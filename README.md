@@ -6,7 +6,7 @@ Backend em Node.js/Express (API REST), frontend em React (Vite), banco de dados 
 
 ## O que o sistema faz
 
-**Loja (pública):** catálogo de produtos por categoria, página de produto com cores/tamanhos/
+**Loja:** catálogo de produtos por categoria, página de produto com cores/tamanhos/
 estoque, carrinho, checkout com entrega ou retirada na loja, acompanhamento de pedido, login e
 histórico de pedidos do cliente.
 

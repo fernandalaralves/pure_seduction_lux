@@ -108,7 +108,7 @@ export default function AdminOrders() {
               
             <div className="admin-order-thumbnail">
                 <img 
-                  src={order.items?.[0]?.product?.image_url || 'https://via.placeholder.com/60?text=Sem+Foto'} 
+                  src={order.items?.[0]?.product?.cover_image_url || 'https://via.placeholder.com/60?text=Sem+Foto'} 
                   alt="Foto do produto" 
                 />
               </div>

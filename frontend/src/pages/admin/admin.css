@@ -284,6 +284,9 @@
 
 /* ---------- Orders list ---------- */
 .admin-order-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
   padding: 16px;
   border: 1px solid var(--panel-border);
   border-radius: 12px;
@@ -293,6 +296,7 @@
 
 .admin-order-row-header {
   display: flex;
+  flex: 1;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
@@ -302,6 +306,16 @@
 .admin-order-number {
   font-family: var(--font-display);
   color: var(--text-light);
+}
+
+/* Estilo da miniatura da imagem */
+.admin-order-thumbnail img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover; /* Garante que a imagem não fique esticada */
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.3); /* Borda dourada sutil */
+  flex-shrink: 0; /* Impede que a imagem seja esmagada */
 }
 
 /* ---------- Product form ---------- */

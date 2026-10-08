@@ -1,9 +1,17 @@
 const { Op } = require('sequelize');
-const { Order, OrderItem, Address, Customer } = require('../models');
+const { Order, OrderItem, Address, Customer,  Product } = require('../models');
 const { asyncHandler } = require('../middlewares/errorHandler');
 
 const INCLUDE = [
-  { model: OrderItem, as: 'items' },
+  { model: OrderItem, as: 'items',
+     include: [
+      {
+        model: Product,
+        as: 'product', 
+        attributes: ['id', 'name', 'image_url'] 
+      }
+    ]
+   },
   { model: Address, as: 'deliveryAddress' },
   { model: Customer, as: 'customer', attributes: ['id', 'name', 'email', 'phone'] },
 ];

@@ -105,6 +105,14 @@ export default function AdminOrders() {
         <>
           {orders.map((order) => (
             <div key={order.id} className="admin-order-row">
+              
+            <div className="admin-order-thumbnail">
+                <img 
+                  src={order.items?.[0]?.product?.image_url || 'https://via.placeholder.com/60?text=Sem+Foto'} 
+                  alt="Foto do produto" 
+                />
+              </div>
+
               <div className="admin-order-row-header">
                 <div>
                   <div className="admin-order-number">{order.order_number}</div>

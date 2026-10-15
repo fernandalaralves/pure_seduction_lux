@@ -18,7 +18,7 @@ module.exports = {
     // 'postgres' (recommended for production) or 'sqlite' (zero-config local
     // file database - no server/user/password needed, great for trying the
     // project out quickly).
-    dialect: process.env.DB_DIALECT || 'postgres',
+    dialect: process.env.DB_DIALECT || 'sqlite',
     storage: process.env.DB_STORAGE || require('path').join(__dirname, '..', '..', 'data', 'database.sqlite'),
     host: required('DB_HOST', 'localhost'),
     port: parseInt(process.env.DB_PORT || '5432', 10),
@@ -53,5 +53,13 @@ module.exports = {
     accessToken: process.env.MP_ACCESS_TOKEN || '',
     publicKey: process.env.MP_PUBLIC_KEY || '',
     webhookSecret: process.env.MP_WEBHOOK_SECRET || '',
+  },
+
+  sentry: {
+    dsn: process.env.SENTRY_DSN || '',
+    debugEndpointEnabled:
+      process.env.SENTRY_DEBUG_ENDPOINT_ENABLED === 'true' ||
+      (process.env.SENTRY_DEBUG_ENDPOINT_ENABLED !== 'false' &&
+        (process.env.NODE_ENV || 'development') !== 'production'),
   },
 };

@@ -1,5 +1,7 @@
 const { ValidationError } = require('sequelize');
 const upload = require('./upload');
+const Sentry = require('../config/sentry');
+const config = require('../config/env');
 
 // Central error handler - keeps controllers free of repetitive try/catch
 // boilerplate for known error shapes, and never leaks stack traces to clients.
@@ -32,6 +34,9 @@ function errorHandler(err, req, res, _next) {
 
   const status = err.status || 500;
   if (status >= 500) {
+    if (config.sentry.dsn) {
+      Sentry.captureException(err);
+    }
     // eslint-disable-next-line no-console
     console.error(err);
   }

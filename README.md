@@ -44,3 +44,29 @@ frontend/ Loja + painel admin (React/Vite), consome a API via REST
 
 Node.js · Express · Sequelize · PostgreSQL/SQLite · JWT · Argon2id · Multer · Helmet ·
 React 18 · Vite · React Router · Axios · Mercado Pago SDK (integração pronta, desativada)
+
+## Observabilidade com Sentry
+
+1. Crie projetos `Node.js/Express` e `React` em [sentry.io](https://sentry.io/) e copie a DSN de cada projeto.
+2. Configure `SENTRY_DSN` no ambiente do backend e `VITE_SENTRY_DSN` no ambiente do frontend. Os arquivos `backend/.env.example` e `frontend/.env.example` mostram as variáveis esperadas. Não publique arquivos `.env` nem DSNs privadas de ingestão.
+3. Inicie a aplicação localmente e chame `GET http://localhost:4000/api/debug-sentry`. Em desenvolvimento, o endpoint fica ativo por padrão; em produção ele fica desativado, a menos que `SENTRY_DEBUG_ENDPOINT_ENABLED=true` seja definido explicitamente. A resposta de erro esperada é HTTP 500.
+4. Confira a issue e o stack trace nos projetos Sentry. O backend envia exceções HTTP 500; o React captura erros de renderização com `Sentry.ErrorBoundary`.
+
+Sem DSN, a aplicação funciona normalmente, mas os eventos não são enviados ao Sentry.
+
+## ChatOps: GitHub e Discord
+
+1. No Discord, abra as configurações do canal de texto, acesse **Integrações > Webhooks**, crie um webhook e copie sua URL.
+2. No GitHub, acesse **Settings > Webhooks > Add webhook**. Use a URL do Discord acrescida de `/github`, selecione `application/json` e habilite pelo menos **Pushes** e **Pull requests**.
+3. Salve o webhook, faça push de um commit e confira a entrega em **Recent Deliveries** no GitHub e a mensagem no canal Discord.
+
+O webhook é configurado nas páginas do repositório e do Discord, não no código-fonte. Não inclua a URL secreta do webhook neste repositório.
+
+## Evidências da atividade
+
+Anexe ao README as quatro capturas reais abaixo, em `docs/evidencias/`. As capturas precisam ser obtidas durante a execução da dupla; ainda não foram incluídas porque dependem dos projetos e das contas reais do Sentry, GitHub e Discord.
+
+1. **Código-fonte:** `docs/evidencias/01-codigo-sentry.png`, mostrando `Sentry.init` e o endpoint `/api/debug-sentry`.
+2. **Sentry Issues:** `docs/evidencias/02-sentry-issues.png`, mostrando a issue de teste e seu stack trace.
+3. **GitHub Webhook:** `docs/evidencias/03-github-webhook.png`, mostrando a URL cadastrada com `/github` e os eventos selecionados. Oculte tokens ou partes sensíveis.
+4. **Discord:** `docs/evidencias/04-discord-push.png`, mostrando a notificação automática correspondente ao push.

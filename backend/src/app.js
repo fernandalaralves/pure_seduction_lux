@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
 
+const Sentry = require('./config/sentry');
 const config = require('./config/env');
 const publicRoutes = require('./routes/publicRoutes');
 const adminRoutes = require('./routes/adminRoutes');
@@ -33,6 +34,12 @@ app.use('/api/auth/login', authLimiter);
 app.use('/api/admin/auth/login', authLimiter);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
+
+if (config.sentry.debugEndpointEnabled) {
+	app.get('/api/debug-sentry', (_req, _res, next) => {
+		next(new Error('Erro de teste do Sentry na API.'));
+	});
+}
 
 app.use('/api', publicRoutes);
 app.use('/api/admin', adminRoutes);

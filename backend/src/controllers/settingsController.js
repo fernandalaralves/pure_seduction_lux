@@ -1,17 +1,18 @@
 const { asyncHandler } = require('../middlewares/errorHandler');
 const { getStoreSettings, invalidateCache } = require('../services/deliveryZoneService');
+const { StoreSettings, sequelize } = require('../models'); // Importa sequelize para raw query
 
-// GET /api/settings - public info the storefront needs (delivery zone message,
-// contact info, delivery fee) - no sensitive data.
-  const getPublic = asyncHandler(async (req, res) => {
-  const { StoreSettings } = require('../models');
-  const s = await StoreSettings.findOne();
-     console.log('--- LENDO SETTINGS DO BANCO ---');
-     console.log('Valor no banco:', s.is_store_locked);
-  
-   res.json({
+// GET /api/settings - public info the storefront needs
+const getPublic = asyncHandler(async (req, res) => {
+  // Usa raw query para buscar direto do banco, ignorando o modelo e cache
+  const [results] = await sequelize.query('SELECT * FROM store_settings LIMIT 1;');
+  const s = results[0];
+
+  console.log('--- LENDO SETTINGS (RAW QUERY) ---');
+  console.log('Valor no banco:', s?.is_store_locked);
+
+  res.json({
     settings: {
-      teste_de_deploy: "Se você está vendo isso, o deploy funcionou!",
       store_name: s.store_name,
       store_phone: s.store_phone,
       store_whatsapp: s.store_whatsapp,
@@ -19,7 +20,7 @@ const { getStoreSettings, invalidateCache } = require('../services/deliveryZoneS
       municipality_city: s.municipality_city,
       municipality_state: s.municipality_state,
       delivery_fee: s.delivery_fee,
-      is_store_locked: s.is_store_locked || false,
+      is_store_locked: s.is_store_locked, // Pega o valor puro do banco
     },
   });
 });

@@ -6,8 +6,12 @@ const { getStoreSettings, invalidateCache } = require('../services/deliveryZoneS
   const getPublic = asyncHandler(async (req, res) => {
   const { StoreSettings } = require('../models');
   const s = await StoreSettings.findOne();
-  res.json({
+     console.log('--- LENDO SETTINGS DO BANCO ---');
+     console.log('Valor no banco:', s.is_store_locked);
+  
+   res.json({
     settings: {
+      teste_de_deploy: "Se você está vendo isso, o deploy funcionou!",
       store_name: s.store_name,
       store_phone: s.store_phone,
       store_whatsapp: s.store_whatsapp,

@@ -14,9 +14,7 @@ const getPublic = asyncHandler(async (req, res) => {
       municipality_city: s.municipality_city,
       municipality_state: s.municipality_state,
       delivery_fee: s.delivery_fee,
-      returns_policy_content: s.returns_policy_content,
-      faq_content: s.faq_content,
-      pix_key: s.pix_key,
+      is_store_locked: s.is_store_locked || false,
     },
   });
 });
@@ -38,9 +36,6 @@ const update = asyncHandler(async (req, res) => {
     municipality_city,
     municipality_state,
     delivery_fee,
-    returns_policy_content,
-    faq_content,
-    pix_key,
   } = req.body;
 
   if (store_name !== undefined) settings.store_name = store_name;
@@ -50,9 +45,6 @@ const update = asyncHandler(async (req, res) => {
   if (municipality_city !== undefined) settings.municipality_city = municipality_city;
   if (municipality_state !== undefined) settings.municipality_state = municipality_state;
   if (delivery_fee !== undefined) settings.delivery_fee = delivery_fee;
-  if (returns_policy_content !== undefined) settings.returns_policy_content = returns_policy_content;
-  if (faq_content !== undefined) settings.faq_content = faq_content;
-  if (pix_key !== undefined) settings.pix_key = pix_key;
 
   await settings.save();
   invalidateCache();

@@ -3,8 +3,9 @@ const { getStoreSettings, invalidateCache } = require('../services/deliveryZoneS
 
 // GET /api/settings - public info the storefront needs (delivery zone message,
 // contact info, delivery fee) - no sensitive data.
-const getPublic = asyncHandler(async (req, res) => {
-  const s = await getStoreSettings({ fresh: true });
+  const getPublic = asyncHandler(async (req, res) => {
+  const { StoreSettings } = require('../models');
+  const s = await StoreSettings.findOne();
   res.json({
     settings: {
       store_name: s.store_name,

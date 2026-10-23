@@ -50,24 +50,33 @@ export default function App() {
     );
   }
 
-  //  TELA DE BLOQUEIO (se a loja estiver trancada)
-  // Verifica se a rota atual NÃO é do admin para permitir que você ainda acesse o painel
-  const isAdminRoute = window.location.pathname.startsWith('/admin');
-  
-  if (isLocked && !isAdminRoute) {
+    // TELA DE BLOQUEIO (bloqueia TUDO, inclusive o admin)
+  if (isLocked) {
     return (
-      <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#1a0505', color: '#d4af37', textAlign: 'center', padding: '20px', fontFamily: 'sans-serif' }}>
-        <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Loja Temporariamente Indisponível</h1>
-        <p style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>Estamos realizando manutenções em nosso sistema.</p>
-        <p style={{ fontSize: '1.2rem' }}>Por favor, volte mais tarde.</p>
-        <a 
-          href="https://wa.me/5588999999999" // Coloque o seu WhatsApp aqui
-          target="_blank" 
-          rel="noreferrer"
-          style={{ marginTop: '30px', padding: '12px 24px', border: '1px solid #d4af37', color: '#d4af37', textDecoration: 'none', borderRadius: '4px', fontWeight: 'bold' }}
-        >
-          Falar com o Suporte
-        </a>
+      <div style={{ 
+        height: '100vh', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        backgroundColor: '#1a0505', 
+        color: '#d4af37', 
+        textAlign: 'center', 
+        padding: '20px', 
+        fontFamily: 'sans-serif' 
+      }}>
+        <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
+          Loja Temporariamente Indisponível
+        </h1>
+        
+        {/* MENSAGEM PERSONALIZADA AQUI */}
+        <p style={{ fontSize: '1.2rem', marginBottom: '1rem', maxWidth: '600px' }}>
+          Estamos realizando uma atualização importante em nosso sistema para melhor atendê-la.
+        </p>
+        <p style={{ fontSize: '1.2rem', maxWidth: '600px' }}>
+          Em breve voltaremos com novidades. Obrigado pela compreensão!
+        </p>
+        
       </div>
     );
   }

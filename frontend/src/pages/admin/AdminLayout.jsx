@@ -9,9 +9,19 @@ export default function AdminLayout() {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const [showNotice, setShowNotice] = useState(() => {
+    const dismissed = localStorage.getItem('psl_admin_notice_dismissed');
+    return !dismissed;
+  });
+
   const handleLogout = () => {
     logout();
     navigate('/admin/login');
+  };
+
+  const handleDismiss = () => {
+    setShowNotice(false);
+    localStorage.setItem('psl_admin_notice_dismissed', 'true');
   };
 
   return (
@@ -25,17 +35,23 @@ export default function AdminLayout() {
           <h1>PURE SEDUCTION LUX</h1>
           <p>Painel Administrativo</p>
         </div>
-        <div className="admin-icon-btn-spacer" aria-hidden="true" />
+        <button className="admin-icon-btn" onClick={handleLogout} aria-label="Sair">
+          ⏻
+        </button>
       </header>
+
+      {showNotice && (
+        <div className="admin-notice">
+          <span>Atenção: o dia do pagamento está próximo! :) 12/11/26</span>
+          <button onClick={handleDismiss}>Fechar</button>
+        </div>
+      )}
 
       {drawerOpen && (
         <div className="admin-drawer-overlay" onClick={() => setDrawerOpen(false)}>
           <nav className="admin-drawer" onClick={(e) => e.stopPropagation()}>
             <Link to="/admin/produtos" onClick={() => setDrawerOpen(false)}>
               Produtos
-            </Link>
-            <Link to="/admin/colecoes" onClick={() => setDrawerOpen(false)}>
-              Coleções
             </Link>
             <Link to="/admin/pedidos" onClick={() => setDrawerOpen(false)}>
               Pedidos

@@ -1,6 +1,12 @@
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_API_URL || '';
+// Detecta automaticamente se está rodando localmente ou em produção
+const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+// Em produção, força a URL oficial da API. Em desenvolvimento, usa o .env ou localhost.
+const baseURL = isDevelopment 
+  ? (import.meta.env.VITE_API_URL || 'http://localhost:4000') 
+  : 'https://api.pureseductionlux.com.br';
 
 export const api = axios.create({ baseURL: `${baseURL}/api` });
 
@@ -34,10 +40,4 @@ adminApi.interceptors.response.use(
 
 export function extractErrorMessage(error, fallback = 'Ocorreu um erro. Tente novamente.') {
   return error?.response?.data?.error || error?.message || fallback;
-}
-
-export function getImageUrl(path) {
-  if (!path) return '';
-  if (path.startsWith('http')) return path;
-  return `${baseURL}${path}`;
 }

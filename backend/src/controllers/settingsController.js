@@ -21,6 +21,7 @@ const getPublic = asyncHandler(async (req, res) => {
       municipality_state: s.municipality_state,
       delivery_fee: s.delivery_fee,
       is_store_locked: s.is_store_locked, // Pega o valor puro do banco
+      show_payment_notice: s.show_payment_notice,
     },
   });
 });

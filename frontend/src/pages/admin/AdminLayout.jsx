@@ -1,18 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import Logo from '../../components/Logo';
 import { useAdminAuth } from '../../context/AdminAuthContext';
+import { api } from '../../api/client';
 import './admin.css';
 
 export default function AdminLayout() {
   const { logout } = useAdminAuth();
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [showNotice, setShowNotice] = useState(false);
 
-  const [showNotice, setShowNotice] = useState(() => {
-    const dismissed = localStorage.getItem('psl_admin_notice_dismissed');
-    return !dismissed;
-  });
+  useEffect(() => {
+    api.get('/settings')
+    .then((res) => {
+      const isDismissed = localStorage.getItem('psl_admin_notice_dismissed') ;
+      if (res.data.settings.show_payment_notice && !isDismissed) {
+        setShowNotice(true);
+      }
+    })
+    .catch(() => {});
+  }, []);
 
   const handleLogout = () => {
     logout();

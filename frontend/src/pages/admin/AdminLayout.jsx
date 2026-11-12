@@ -14,7 +14,7 @@ export default function AdminLayout() {
   useEffect(() => {
     api.get('/settings')
     .then((res) => {
-      const isDismissed = localStorage.getItem('psl_admin_notice_dismissed') ;
+      const isDismissed = sessionStorage.getItem('psl_admin_notice_dismissed') ;
       if (res.data.settings.show_payment_notice && !isDismissed) {
         setShowNotice(true);
       }
@@ -29,7 +29,7 @@ export default function AdminLayout() {
 
   const handleDismiss = () => {
     setShowNotice(false);
-    localStorage.setItem('psl_admin_notice_dismissed', 'true');
+    sessionStorage.setItem('psl_admin_notice_dismissed', 'true');
   };
 
   return (

@@ -38,6 +38,15 @@ adminApi.interceptors.response.use(
   }
 );
 
+export function getImageUrl(path) {
+  if (!path) return '';
+  // Se o caminho já for uma URL completa (http...), retorna como está
+  if (path.startsWith('http')) return path;
+  // Se for um caminho relativo, adiciona o domínio da API
+  return `${baseURL}${path}`;
+}
+
 export function extractErrorMessage(error, fallback = 'Ocorreu um erro. Tente novamente.') {
   return error?.response?.data?.error || error?.message || fallback;
+
 }

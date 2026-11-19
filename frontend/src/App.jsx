@@ -71,10 +71,10 @@ export default function App() {
         
         {/* MENSAGEM PERSONALIZADA AQUI */}
         <p style={{ fontSize: '1.2rem', marginBottom: '1rem', maxWidth: '600px' }}>
-          Estamos realizando uma atualização importante em nosso sistema para melhor atendê-la.
+          O acesso à loja foi temporariamente suspenso.
         </p>
         <p style={{ fontSize: '1.2rem', maxWidth: '600px' }}>
-          Em breve voltaremos com novidades. Obrigado pela compreensão!
+          Para restabelecer o serviço e voltar a vender, é necessário regularizar a mensalidade pendente.
         </p>
         
       </div>

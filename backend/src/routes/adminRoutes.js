@@ -6,7 +6,6 @@ const adminOrderController = require('../controllers/adminOrderController');
 const settingsController = require('../controllers/settingsController');
 const { requireAdminAuth } = require('../middlewares/auth');
 const { products: productUpload, categories: categoryUpload } = require('../middlewares/upload');
-
 const router = Router();
 
 // Auth
@@ -20,26 +19,16 @@ router.use(requireAdminAuth);
 // Products (add / edit / remove, exactly as requested)
 router.get('/products', adminProductController.list);
 router.get('/products/:id', adminProductController.getById);
-router.post('/products', productUpload.array('images', 6), productUpload.validateUploadedImages, adminProductController.create);
-router.put('/products/:id', productUpload.array('images', 6), productUpload.validateUploadedImages, adminProductController.update);
+router.post('/products', productUpload.array('images', 6), adminProductController.create);
+router.put('/products/:id', productUpload.array('images', 6), adminProductController.update);
 router.patch('/products/:id/status', adminProductController.updateStatus);
 router.delete('/products/:id', adminProductController.remove);
 router.delete('/products/:id/images/:imageId', adminProductController.removeImage);
 
-// Categories ("coleções" na vitrine)
+// Categories
 router.get('/categories', categoryController.list);
-router.post(
-  '/categories',
-  categoryUpload.single('image'),
-  categoryUpload.validateUploadedImages,
-  categoryController.create
-);
-router.put(
-  '/categories/:id',
-  categoryUpload.single('image'),
-  categoryUpload.validateUploadedImages,
-  categoryController.update
-);
+router.post('/categories', categoryUpload.single('image'), categoryController.create);
+router.put('/categories/:id', categoryUpload.single('image'), categoryController.update);
 router.delete('/categories/:id', categoryController.remove);
 
 // Orders placed by customers - visible to the admin, as required
@@ -47,7 +36,6 @@ router.get('/orders', adminOrderController.list);
 router.get('/orders/:id', adminOrderController.getById);
 router.patch('/orders/:id/status', adminOrderController.updateStatus);
 router.patch('/orders/:id/payment-status', adminOrderController.updatePaymentStatus);
-router.delete('/orders/:id', adminOrderController.remove);
 
 // Store settings (incl. the delivery municipality)
 router.get('/settings', settingsController.getAdmin);

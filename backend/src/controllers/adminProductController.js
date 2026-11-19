@@ -31,7 +31,7 @@ async function uniqueSlug(name, excludeId = null) {
   }
 }
 
-// GET /api/admin/products - lista TODOS os produtos (ativos + inativos) com busca/ordenação/filtro
+// GET /api/admin/products - list ALL products (active + inactive) with search/sort/filter
 const list = asyncHandler(async (req, res) => {
   const { search, status, category, sort } = req.query;
   const where = {};
@@ -92,8 +92,7 @@ const create = asyncHandler(async (req, res) => {
         category_id: category_id || null,
         price,
         stock: stock ?? 0,
-        // Correção: limpa o SKU vazio e transforma em null
-        sku: (typeof sku === 'string' && sku.trim()) ? sku.trim() : null,
+        sku: sku || null,
         status: status || 'active',
       },
       { transaction: t }
@@ -104,7 +103,7 @@ const create = asyncHandler(async (req, res) => {
       await ProductImage.bulkCreate(
         files.map((file, index) => ({
           product_id: product.id,
-          url: `/uploads/products/${file.filename}`,
+          url: file.path, // O Cloudinary retorna a URL completa em file.path
           position: index,
         })),
         { transaction: t }
@@ -153,32 +152,8 @@ const update = asyncHandler(async (req, res) => {
   if (category_id !== undefined) product.category_id = category_id || null;
   if (price !== undefined) product.price = price;
   if (stock !== undefined) product.stock = stock;
-  
-  // Correção: tratamento completo do SKU (chave fechada + throw error)
-  if (sku !== undefined) {
-    const cleanSku = typeof sku === 'string' ? sku.trim() : sku;
-    
-    if (!cleanSku) {
-      product.sku = null; // Vazio vira NULL, não quebra o unique
-    } else if (cleanSku !== product.sku) {
-      // Verifica se o SKU já existe em outro produto
-      const existingSku = await Product.findOne({ 
-        where: { 
-          sku: cleanSku,
-          id: { [Op.ne]: product.id } // Ignora o próprio produto
-        } 
-      });
-      
-      if (existingSku) {
-        const error = new Error('Este SKU já está sendo usado por outro produto.');
-        error.status = 400;
-        error.details = [{ field: 'sku', message: 'Este SKU já está sendo usado por outro produto.' }];
-        throw error; // Lança o erro para o errorHandler
-      }
-      
-      product.sku = cleanSku;
-    }
-  }
+  if (sku !== undefined) product.sku = sku;
+  if (status !== undefined) product.status = status;
 
   await product.save();
 
@@ -202,7 +177,7 @@ const update = asyncHandler(async (req, res) => {
   res.json({ product: full });
 });
 
-// PATCH /api/admin/products/:id/status - alterna ATIVO/INATIVO rapidamente
+// PATCH /api/admin/products/:id/status - quick toggle ATIVO/INATIVO
 const updateStatus = asyncHandler(async (req, res) => {
   const product = await Product.findByPk(req.params.id);
   if (!product) return res.status(404).json({ error: 'Produto não encontrado.' });
